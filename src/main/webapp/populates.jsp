@@ -15,9 +15,13 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+	
+	<%@ include file="header.jsp" %>
+	
 	<basefont face="Arial">
 	<div class="container">
-	  <center><h2>Product List</h2></center>
+	  <center><span class="badge badge-success"><h3>Product List</h3></span></center>
+	  <br>
 	  <table class="table">
 	    <thead class="thead-dark">
 	      <tr>
@@ -63,6 +67,6 @@
 			</tbody>
 		  </table>
 		</div>
-			
+		<%@ include file="footer.jsp" %>	
 </body>
 </html>
