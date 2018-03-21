@@ -21,15 +21,19 @@
 	
 	<basefont face="Arial">
 	<div class="container">
-	  <center><span class="badge badge-success"><h3>Product List</h3></span></center>
+	  <br>
+	  <center><span class="badge badge-success"><h3>Customer List</h3></span></center>
 	  <br>
 	  <table class="table">
 	    <thead class="thead-dark">
 	      <tr>
-	        <th>Product ID</th>
-	        <th>Description</th>
-	        <th>Manufacturer</th>
-	        <th>Price</th>
+	        <th>LastName</th>
+	        <th>FirstName</th>
+	        <th>Sex</th>
+	        <th>Age</th>
+	        <th>Children</th>
+	        <th>Spouse</th>
+	        <th>Smoker</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -38,6 +42,8 @@
 			int startRow = 0;
 			if (custBean.populate()) {
 				String start = (String) request.getParameter("start");
+				System.out.println("Start:"+start);
+				System.out.println("Customer FirstName:"+custBean.getFname());
 				
 				if (start != null) {
 					startRow = new Integer(start).intValue();
@@ -45,13 +51,17 @@
 				}
 				
 				while (rowCount < 10 && custBean.nextRow() > 0) {
-					rowCount++;					
+					rowCount++;		
+					System.out.println("RowCount:"+rowCount);
 			%>
 			<tr>
-				<td width="20%"><jsp:getProperty name="productBean" property="prodID"/></td>
-				<td width="30%"><jsp:getProperty name="productBean" property="prodDesc"/></td>
-				<td width="30%"><jsp:getProperty name="productBean" property="prodManuf"/></td>
-				<td width="20%"><jsp:getProperty name="productBean" property="prodPrice"/></td>
+				<td width="20%"><jsp:getProperty name="custBean" property="lname"/></td>
+				<td width="30%"><jsp:getProperty name="custBean" property="fname"/></td>
+				<td width="30%"><jsp:getProperty name="custBean" property="sex"/></td>
+				<td width="20%"><jsp:getProperty name="custBean" property="age"/></td>
+				<td width="20%"><jsp:getProperty name="custBean" property="children"/></td>
+				<td width="20%"><jsp:getProperty name="custBean" property="spouse"/></td>
+				<td width="20%"><jsp:getProperty name="custBean" property="smoker"/></td>
 			</tr>
 			<%
 				}

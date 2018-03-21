@@ -14,7 +14,7 @@ public class CustomerBean implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/* Member Variables */
-	private String id, lname, fname, sex;
+	private String id, lname, fname, sex, married;
 	private int age, children;
 	private boolean spouse, smoker;
 
@@ -25,7 +25,7 @@ public class CustomerBean implements java.io.Serializable {
 	private int currentRow;
 	private int rowCount;
 	
-	List<String> lNameList, fNameList, sexList, marriedList, smokerList;
+	List<String> lNameList, fNameList, sexList, marriedList, smokerList, spouseList;
 	List<Integer> custIdList, ageList, childrenList;
 	
 	/* Error collection */
@@ -48,6 +48,7 @@ public class CustomerBean implements java.io.Serializable {
 		setSpouse(false);
 		setSmoker(false);
 		setStatus("");
+		setMarried("");
 
 		setId("");  // Not really a property, so no accessor method
 
@@ -56,7 +57,7 @@ public class CustomerBean implements java.io.Serializable {
 		sexList   = new ArrayList<String>();
 		marriedList = new ArrayList<String>();
 		smokerList = new ArrayList<String>();
-		
+		spouseList = new ArrayList<String>();
 		custIdList = new ArrayList<Integer>();
 		ageList = new ArrayList<Integer>();
 		childrenList = new ArrayList<Integer>();
@@ -68,6 +69,13 @@ public class CustomerBean implements java.io.Serializable {
 		dbConnect();
 	}
 
+	public void setStartRow(int start) {
+		if (start < rowCount) {
+			currentRow = start;
+		}
+	}
+
+	
 	public boolean populate() {
 
 		if(this.custIdList.isEmpty()) {
@@ -84,7 +92,8 @@ public class CustomerBean implements java.io.Serializable {
 				this.smokerList.clear();
 				this.ageList.clear();
 				this.childrenList.clear();
-
+				
+				
 				rowCount = 0;
 				
 				while (resultSet.next()) {
@@ -96,7 +105,9 @@ public class CustomerBean implements java.io.Serializable {
 					smokerList.add(resultSet.getString("smoker"));
 					childrenList.add(resultSet.getInt("children"));
 					ageList.add(resultSet.getInt("age"));
+					//this.spouseList.add(resultSet.getString("spouse"));
 					rowCount++;
+					logger.debug("FirstName:"+resultSet.getString("fname")+" LastName:"+resultSet.getString("lname")+" "+" Sex:"+resultSet.getString("sex")+" Married:"+resultSet.getString("married"));
 				}
 
 			}catch(Exception e) {
@@ -114,17 +125,16 @@ public class CustomerBean implements java.io.Serializable {
 			  return 0; // return 0 to indicate end of recordset
 		  }
 
-		  //this.setId(id);
-		  /* Populate bean properties with current row */
-		  /*setProdID((String)prodIDList.get(currentRow));
-
-		  setProdDesc((String)prodDescList.get(currentRow));
-
-		  setProdManuf((String)prodManufList.get(currentRow));
-
-		  Float price = (Float)prodPriceList.get(currentRow);
-		  setProdPrice(price.floatValue());*/
-
+		  this.setAge(this.ageList.get(currentRow));
+		  this.setChildren(this.childrenList.get(currentRow));
+		  this.setFname(this.fNameList.get(currentRow));
+		  this.setLname(this.lNameList.get(currentRow));
+		  this.setSex(this.sexList.get(currentRow));
+		  this.setSmoker((this.smokerList.get(currentRow) == "Y" ? true : false ));
+		  this.setMarried(this.marriedList.get(currentRow));
+		 
+		  logger.debug("Customer Firstname:"+this.getFname());
+		  
 		  currentRow++;
 
 		  /* return currentRow*/
@@ -390,6 +400,14 @@ public class CustomerBean implements java.io.Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getMarried() {
+		return married;
+	}
+
+	public void setMarried(String married) {
+		this.married = married;
 	}
 
 }

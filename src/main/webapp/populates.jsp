@@ -53,11 +53,11 @@
 	<div class="container">
 	  <br>
 	  <br>
-	  <center><span class="badge badge-success"><h3><%=heading %></h3></span></center>
-	  <br>
 	  <center><span class="badge badge-success"><h3>Product List</h3></span></center>
 	  <br>
-	  <center><span class="badge badge-success"><h4>This is visit number <%=count %> by this browser (Via Cookie).</h4></span></center>
+	  <center><span class="badge badge-secondary"><h4><%=heading %></h4></span></center>
+	  <br>
+	  <center><span class="badge badge-dark"><h4>This is visit number <%=count %> by this browser (Via Cookie).</h4></span></center>
 	  <br>
 	  <table class="table">
 	    <thead class="thead-dark">
