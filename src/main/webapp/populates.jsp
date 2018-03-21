@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+<%@ page import="com.cdc.mitrais.cookie.*" %>
+
 <jsp:useBean id="productBean" scope="session" class="com.cdc.mitrais.model.ProductBean"></jsp:useBean>
 <%@page errorPage="myerror.jsp?from=populate.jsp" %>
 
@@ -17,10 +19,45 @@
 <body>
 	
 	<%@ include file="header.jsp" %>
+	<%
+		String countString = CookieUtilities.getCookieValue(request, "populate-page", "1");
+		int count = 1;
+		count = Integer.parseInt(countString);
+		LongLivedCookie c = new LongLivedCookie ("populate-page", String.valueOf(count+1));
+		response.addCookie(c);
+	%>
+	
+	<%
+		String heading;
+		Integer accessCount;
+		//HttpSession httpSession = request.getSession();
+		synchronized(session){
+			//String heading;
+			accessCount = (Integer) session.getAttribute("accessCount");
+			
+			if(accessCount == null){
+				accessCount = 0;
+				heading = "Welcome, New Comer";
+			}else{
+				heading = "Welcome Back";
+				accessCount = accessCount + 1;
+				
+			}
+			
+			session.setAttribute("accessCount", accessCount);
+		}
+	
+	%>
 	
 	<basefont face="Arial">
 	<div class="container">
+	  <br>
+	  <br>
+	  <center><span class="badge badge-success"><h3><%=heading %></h3></span></center>
+	  <br>
 	  <center><span class="badge badge-success"><h3>Product List</h3></span></center>
+	  <br>
+	  <center><span class="badge badge-success"><h4>This is visit number <%=count %> by this browser (Via Cookie).</h4></span></center>
 	  <br>
 	  <table class="table">
 	    <thead class="thead-dark">

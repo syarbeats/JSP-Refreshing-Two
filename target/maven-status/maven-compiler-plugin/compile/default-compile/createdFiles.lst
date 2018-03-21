@@ -1,2 +1,5 @@
 com\cdc\mitrais\model\CustomerBean.class
 com\cdc\mitrais\model\ProductBean.class
+com\cdc\mitrais\cookie\SessionHandling.class
+com\cdc\mitrais\cookie\CookieUtilities.class
+com\cdc\mitrais\cookie\LongLivedCookie.class

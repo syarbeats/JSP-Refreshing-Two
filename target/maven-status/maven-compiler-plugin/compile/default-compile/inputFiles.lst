@@ -1,2 +1,5 @@
 C:\eclipse_workspace\jsp-two\src\main\java\com\cdc\mitrais\model\CustomerBean.java
 C:\eclipse_workspace\jsp-two\src\main\java\com\cdc\mitrais\model\ProductBean.java
+C:\eclipse_workspace\jsp-two\src\main\java\com\cdc\mitrais\cookie\SessionHandling.java
+C:\eclipse_workspace\jsp-two\src\main\java\com\cdc\mitrais\cookie\CookieUtilities.java
+C:\eclipse_workspace\jsp-two\src\main\java\com\cdc\mitrais\cookie\LongLivedCookie.java

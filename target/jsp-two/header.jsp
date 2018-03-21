@@ -11,7 +11,7 @@
 	<tr>
 		<td><img src="img/logo.gif"></td>
 		<td>
-			<font color="#FFFFFF" face="Arial "size="5">
+			<font color="#FFFFFF" face="Arial "size="10">
 			<b>Insurance Quoting System</b>
 			</font>
 		</td>
